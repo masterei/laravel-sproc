@@ -1,0 +1,48 @@
+{
+    "name": "masterei/laravel-sproc",
+    "description": "Laravel Query Builder for handling a stored procedure.",
+    "keywords": [
+        "masterei",
+        "laravel-sproc",
+        "sproc"
+    ],
+    "homepage": "https://github.com/masterei/laravel-sproc",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rey Arnejo Jr.",
+            "email": "mastereijunior@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "ext-pdo": "*",
+        "php": "^7.3|^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Masterei\\Sproc\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Masterei\\Sproc\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Masterei\\Sproc\\SprocServiceProvider"
+            ],
+            "aliases": {
+                "SP": "Masterei\\Sproc\\Facades\\SP"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
