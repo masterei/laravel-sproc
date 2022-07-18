@@ -6,7 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hydrate extends Model
 {
-    protected $guarded = [];
-
-    // dumping results
+    // dump results
 }
