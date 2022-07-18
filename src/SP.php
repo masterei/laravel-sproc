@@ -15,7 +15,7 @@ class SP
 
     protected $results = [];
 
-    protected $pdo_execute = false;
+    protected $message;
 
     public function __construct()
     {
@@ -32,7 +32,7 @@ class SP
     }
 
     /**
-     * Specify a database connection.
+     * Specify database connection.
      * @param $database
      * @return $this
      */
@@ -74,20 +74,38 @@ class SP
     }
 
     /**
+     * Query Builder.
+     * @return string
+     */
+    protected function buildQuery()
+    {
+        $std_query = "EXECUTE $this->stored_procedure";
+        return isset($this->params->query) ? "$std_query " . $this->params->query : $std_query;
+    }
+
+    /**
+     * Returns Query.
+     * @return string
+     */
+    public function toSql()
+    {
+        return $this->buildQuery();
+    }
+
+    /**
      * Execute stored procedure and retrieving dataset results.
      * @return mixed
      */
     protected function executeStmt()
     {
-        $query = "EXECUTE $this->stored_procedure";
-        $query .= isset($this->params->query) ? " " . $this->params->query : null;
-
-        $stmt = DB::connection($this->database)->getPdo()->prepare($query);
+        $stmt = DB::connection($this->database)
+            ->getPdo()
+            ->prepare($this->buildQuery());
 
         // parameter binding
         if(isset($this->params->raw)){
             foreach ($this->params->raw as $key => $value){
-                $stmt->bindParam(":$key", $value);
+                $stmt->bindParam(":$key", $this->params->raw[$key]);
             }
         }
 
@@ -179,7 +197,7 @@ class SP
     public function execute()
     {
         $this->fetch();
-        $this->pdo_execute = true;
+        $this->message = true;
 
         return $this;
     }
@@ -217,6 +235,6 @@ class SP
      */
     public function __toString()
     {
-        return (string) $this->pdo_execute;
+        return (string) $this->message;
     }
 }
