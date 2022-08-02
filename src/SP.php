@@ -130,6 +130,8 @@ class SP
                     $this->results[] = $rows;
                 }
             } while ($stmt->nextRowset());
+
+            unset($stmt);
         }
 
         return $this;
