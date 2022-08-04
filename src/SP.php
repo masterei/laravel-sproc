@@ -15,8 +15,6 @@ class SP
 
     protected $results = [];
 
-    protected $message;
-
     public function __construct()
     {
         $this->defaultConnection();
@@ -194,23 +192,20 @@ class SP
 
     /**
      * Method to be used if no expected result to be returned.
-     * @return $this
+     * @return void
      */
     public function execute()
     {
-        $this->fetch();
-        $this->message = true;
-
-        return $this;
+        $this->executeStmt();
     }
 
     /**
-     * Returning inserted id after chaining with execute() method.
+     * Execute and fetch scope identity.
      * @return int|mixed
      */
-    public function getLastInsertedId()
+    public function getScopeID()
     {
-        $result = $this->hydrate($this->getDataset());
+        $result = $this->hydrate($this->fetch()->getDataset(0));
 
         if(!$result->isEmpty()){
             $result = $result->first();
@@ -229,14 +224,5 @@ class SP
         }
 
         return 0;
-    }
-
-    /**
-     * PDO status for successful execution.
-     * @return string
-     */
-    public function __toString()
-    {
-        return (string) $this->message;
     }
 }
