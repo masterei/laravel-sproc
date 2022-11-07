@@ -1,8 +1,8 @@
 <?php
 
-namespace Masterei\Sproc\Tests\Feature;
+namespace Ojenra\Sproc\Tests\Feature;
 
-use Masterei\Sproc\Tests\TestCase;
+use Ojenra\Sproc\Tests\TestCase;
 
 class SPTest extends TestCase
 {
