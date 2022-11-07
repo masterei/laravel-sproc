@@ -1,6 +1,6 @@
 <?php
 
-namespace Masterei\Sproc;
+namespace Ojenra\Sproc;
 
 use Illuminate\Support\ServiceProvider;
 

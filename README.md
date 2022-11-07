@@ -1,7 +1,7 @@
 # Laravel Sproc
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/masterei/laravel-sproc.svg?style=flat-square)](https://packagist.org/packages/masterei/laravel-sproc)
-[![Total Downloads](https://img.shields.io/packagist/dt/masterei/laravel-sproc.svg?style=flat-square)](https://packagist.org/packages/masterei/laravel-sproc)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/ojenra/laravel-sproc.svg?style=flat-square)](https://packagist.org/packages/ojenra/laravel-sproc)
+[![Total Downloads](https://img.shields.io/packagist/dt/ojenra/laravel-sproc.svg?style=flat-square)](https://packagist.org/packages/ojenra/laravel-sproc)
 
 Laravel Query Builder for handling a stored procedure.
 
@@ -10,7 +10,7 @@ Laravel Query Builder for handling a stored procedure.
 You can install the package via composer:
 
 ```bash
-composer require masterei/laravel-sproc
+composer require ojenra/laravel-sproc
 ```
 
 Optionally, you can publish the config file with:
@@ -24,7 +24,7 @@ php artisan vendor:publish --tag="sproc-config"
 Import class facade
 
 ```php
-use Masterei\Sproc\Facades\SP;
+use Ojenra\Sproc\Facades\SP;
 ```
 
 execute()

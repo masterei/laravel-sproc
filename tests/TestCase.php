@@ -1,8 +1,8 @@
 <?php
 
-namespace Masterei\Sproc\Tests;
+namespace Ojenra\Sproc\Tests;
 
-use Masterei\Sproc\SprocServiceProvider;
+use Ojenra\Sproc\SprocServiceProvider;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase
