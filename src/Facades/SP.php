@@ -1,9 +1,9 @@
 <?php
 
-namespace Ojenra\Sproc\Facades;
+namespace Masterei\Sproc\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Ojenra\Sproc\SP as BaseSP;
+use Masterei\Sproc\SP as BaseSP;
 
 class SP extends Facade
 {
