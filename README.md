@@ -3,7 +3,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/masterei/laravel-sproc.svg?style=flat-square)](https://packagist.org/packages/masterei/laravel-sproc)
 [![Total Downloads](https://img.shields.io/packagist/dt/masterei/laravel-sproc.svg?style=flat-square)](https://packagist.org/packages/masterei/laravel-sproc)
 
-Laravel Query Builder for handling a stored procedure.
+Laravel Query Builder for handling stored procedure.
 
 ## Installation
 
