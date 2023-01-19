@@ -1,6 +1,6 @@
 <?php
 
-namespace Ojenra\Sproc\Models;
+namespace Masterei\Sproc\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

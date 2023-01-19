@@ -1,9 +1,9 @@
 <?php
 
-namespace Ojenra\Sproc;
+namespace Masterei\Sproc;
 
 use Illuminate\Support\Facades\DB;
-use Ojenra\Sproc\Models\Hydrate;
+use Masterei\Sproc\Models\Hydrate;
 
 class SP
 {

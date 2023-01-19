@@ -1,12 +1,12 @@
 {
-    "name": "ojenra/laravel-sproc",
-    "description": "Laravel Query Builder for handling a stored procedure.",
+    "name": "masterei/laravel-sproc",
+    "description": "Laravel Query Builder for handling stored procedure.",
     "keywords": [
-        "ojenra",
+        "masterei",
         "laravel-sproc",
         "sproc"
     ],
-    "homepage": "https://github.com/ojenra/laravel-sproc",
+    "homepage": "https://github.com/masterei/laravel-sproc",
     "license": "MIT",
     "authors": [
         {
@@ -24,21 +24,21 @@
     },
     "autoload": {
         "psr-4": {
-            "Ojenra\\Sproc\\": "src/"
+            "Masterei\\Sproc\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ojenra\\Sproc\\Tests\\": "tests/"
+            "Masterei\\Sproc\\Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Ojenra\\Sproc\\SprocServiceProvider"
+                "Masterei\\Sproc\\SprocServiceProvider"
             ],
             "aliases": {
-                "SP": "Ojenra\\Sproc\\Facades\\SP"
+                "SP": "Masterei\\Sproc\\Facades\\SP"
             }
         }
     },
