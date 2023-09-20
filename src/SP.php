@@ -22,7 +22,6 @@ class SP
 
     /**
      * Setting up database default connection.
-     * @void
      */
     private function defaultConnection()
     {
@@ -31,8 +30,6 @@ class SP
 
     /**
      * Specify database connection.
-     * @param $database
-     * @return $this
      */
     public function connect($database)
     {
@@ -42,8 +39,6 @@ class SP
 
     /**
      * Specify stored procedure name to be called.
-     * @param $stored_procedure
-     * @return $this
      */
     public function call($stored_procedure)
     {
@@ -53,10 +48,8 @@ class SP
 
     /**
      * Parameters and Arguments to be passed into stored procedure.
-     * @param array $params
-     * @return $this
      */
-    public function params(array $params = [])
+    public function params($params = [])
     {
         $temp = [];
         foreach (array_keys($params) as $key){
@@ -73,7 +66,6 @@ class SP
 
     /**
      * Query Builder.
-     * @return string
      */
     protected function buildQuery()
     {
@@ -83,7 +75,6 @@ class SP
 
     /**
      * Returns Query.
-     * @return string
      */
     public function toSql()
     {
@@ -92,7 +83,6 @@ class SP
 
     /**
      * Execute stored procedure and retrieving dataset results.
-     * @return mixed
      */
     protected function executeStmt()
     {
@@ -115,30 +105,32 @@ class SP
     /**
      * Retrieving raw dataset results
      * before converting into Laravel Collection Method.
-     * @return $this
      */
     public function fetch(){
         if(empty($this->results)){
             $stmt = $this->executeStmt();
 
-            // populate into array
+            // populating into array
             do {
-                $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-                if ($rows) {
-                    $this->results[] = $rows;
+                $dataset = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+
+                if ($dataset) {
+                    // hydrating each dataset, so it can leverage the eloquent collection functionality
+                    $this->results[] = $this->hydrate($dataset);
                 }
             } while ($stmt->nextRowset());
 
             unset($stmt);
         }
 
+        // convert datasets into a collection
+        $this->results = collect($this->results);
+
         return $this;
     }
 
     /**
      * Get specific dataset.
-     * @param null $index
-     * @return array
      */
     private function getDataset($index = null)
     {
@@ -154,9 +146,7 @@ class SP
     }
 
     /**
-     * Hydrating data using in package Model.
-     * @param null $dataset
-     * @return mixed
+     * Hydrating data using in-package Model.
      */
     public function hydrate($dataset){
         return Hydrate::hydrate($dataset);
@@ -165,34 +155,29 @@ class SP
     /**
      * Mimics Laravel Collection Method.
      * Limited only to the first dataset result if not using a get() method.
-     * @return mixed
      */
     public function first(){
-        return $this->hydrate($this->fetch()->getDataset(0))->first();
+        return $this->fetch()->getDataset(0)->first();
     }
 
     /**
-     * Specify what dataset to be retrieve, default index is 0.
-     * @param int $index
-     * @return $this
+     * Specify what dataset to retrieve, default index is 0.
      */
     public function get($index = 0)
     {
-        return $this->hydrate($this->fetch()->getDataset($index));
+        return $this->fetch()->getDataset($index);
     }
 
     /**
      * Returning all dataset results.
-     * @return $this
      */
     public function all()
     {
-        return $this->hydrate($this->fetch()->getDataset());
+        return $this->fetch()->getDataset();
     }
 
     /**
      * Method to be used if no expected result to be returned.
-     * @return void
      */
     public function execute()
     {
@@ -201,11 +186,10 @@ class SP
 
     /**
      * Execute and fetch scope identity.
-     * @return int|mixed
      */
     public function getScopeID()
     {
-        $result = $this->hydrate($this->fetch()->getDataset(0));
+        $result = $this->fetch()->getDataset(0);
 
         if(!$result->isEmpty()){
             $result = $result->first();
