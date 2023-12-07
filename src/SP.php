@@ -130,7 +130,7 @@ class SP
     }
 
     /**
-     * Gets specific dataset.
+     * Get specific dataset.
      */
     private function getDataset($index = null)
     {
