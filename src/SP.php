@@ -130,15 +130,11 @@ class SP
     }
 
     /**
-     * Get specific dataset.
+     * Gets specific dataset.
      */
     private function getDataset($index = null)
     {
-        if(empty($this->results)){
-            return [];
-        }
-
-        if(is_null($index)){
+        if($this->results->isEmpty() || is_null($index)){
             return $this->results;
         }
 
